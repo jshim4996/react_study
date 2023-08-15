@@ -11,6 +11,7 @@ const Box = styled.div`
   height: 100px;
 `;
 
+// extens : styled html 태그를 가져오는 것이 아닌 이미 정의된 styled 를 가져와 사용한다.
 const Circle = styled(Box)`
   border-radius: 50px;
 `;

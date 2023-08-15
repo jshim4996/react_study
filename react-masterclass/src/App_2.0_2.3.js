@@ -11,7 +11,7 @@ const Btn = styled.button`
   border-radius: 15px;
 `;
 
-// attr 속석을 설정 할 수있다.
+// attrs 설정 할 수있다.
 const Input = styled.input.attrs({ required: true, minLength: 10 })`
   background-color: tomato;
 `;
