@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { Route, Switch, useLocation, useParams } from "react-router-dom";
 import styled from "styled-components";
+import Price from "./Price";
+import Chart from "./Chart";
 
 const Container = styled.div`
   padding: 0px 20px;
@@ -148,7 +150,9 @@ function Coin() {
   return (
     <Container>
       <Header>
-        <Title>{state?.name || "Loading..."}</Title>
+        <Title>
+          {state?.name ? state.name : loading ? "Loading..." : info?.name}
+        </Title>
       </Header>
       {loading ? (
         <Loader> Loding ... </Loader>
@@ -179,14 +183,14 @@ function Coin() {
               <span>{priceInfo?.max_supply}</span>
             </OverviewItem>
           </Overview>
-          {/* <Switch>
+          <Switch>
             <Route path={`/${coinId}/price`}>
               <Price />
             </Route>
             <Route path={`/${coinId}/chart`}>
               <Chart />
             </Route>
-          </Switch> */}
+          </Switch>
         </>
       )}
     </Container>
