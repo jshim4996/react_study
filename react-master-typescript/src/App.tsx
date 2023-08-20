@@ -1,6 +1,7 @@
 // import Circle from "./Circle";
 import { createGlobalStyle } from "styled-components";
 import Router from "./Router";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 //createGlobalStyle 전역 스코프에 스타일을 적용 시켜줌
 const GlobalStyle = createGlobalStyle`
@@ -69,6 +70,8 @@ function App() {
     <>
       <GlobalStyle />
       <Router />
+      {/* 현재 사용 중인 react query 를 확인 및 조작 할수 있는 develop tool 제공 기능 */}
+      <ReactQueryDevtools initialIsOpen={true} />
     </>
   );
 }

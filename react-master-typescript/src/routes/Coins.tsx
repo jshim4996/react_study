@@ -65,8 +65,6 @@ interface ICoin {
 
 function Coins() {
   //react query 는 데이터를 캐쉬에 저장하고 있다. 페이지 이동후 다시 돌아와도 loading 이 작동하지 않는다.
-  const { isLoading, data } = useQuery<ICoin[]>("allCoins", fetchCoins);
-
   /* useEffect 두번째 파라매터 값을 입력 안하면 무한호출 함 */
   /* 별도의 변수를 지정하여 함수를 생성 하지 않고 싶을때 ()(); 사용하여 라인에서 바로 함수를 실행 할수있게 한다. */
   // const [coins, setCoins] = useState<CoinInterface[]>([]);
@@ -81,7 +79,7 @@ function Coins() {
   //     setLoading(false);
   //   })();
   // }, []);
-
+  const { isLoading, data } = useQuery<ICoin[]>("allCoins", fetchCoins);
   return (
     <Container>
       <Header>
