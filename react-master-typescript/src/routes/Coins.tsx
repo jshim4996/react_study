@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { fetchCoins } from "../api";
 import { useQuery } from "react-query";
+import { Helmet } from "react-helmet";
 
 const Container = styled.div`
   padding: 0px 20px;
@@ -82,6 +83,13 @@ function Coins() {
   const { isLoading, data } = useQuery<ICoin[]>("allCoins", fetchCoins);
   return (
     <Container>
+      {/* <Helmet> 문서의 사용 하여 <heade> 를 수정할수 있다.
+        npm i react-helmet
+        type Script 경우 추가 설치 => npm i --save-dev @types/react-helmet 
+      */}
+      <Helmet>
+        <title>코인</title>
+      </Helmet>
       <Header>
         <Title>코인</Title>
       </Header>
