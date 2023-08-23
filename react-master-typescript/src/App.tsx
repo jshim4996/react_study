@@ -1,7 +1,11 @@
 // import Circle from "./Circle";
-import { createGlobalStyle } from "styled-components";
+import { ThemeProvider, createGlobalStyle } from "styled-components";
 import Router from "./Router";
 import { ReactQueryDevtools } from "react-query/devtools";
+import { darkTheme, ligthTheme } from "./theme";
+import { useState } from "react";
+import { useRecoilValue } from "recoil";
+import { isDarkAtom } from "./atoms";
 
 //createGlobalStyle 전역 스코프에 스타일을 적용 시켜줌
 const GlobalStyle = createGlobalStyle`
@@ -65,16 +69,21 @@ a{
 `;
 
 function App() {
+  const isDark = useRecoilValue(isDarkAtom);
   /* Fragment : react 에서 제공하는  부모 없이 서로 붙어 있는 컴포넌트를 붙어 있게 해주는 역활을 한다 없다면 불필요한 div 가 생성 될수 있다.*/
   return (
     <>
-      <GlobalStyle />
-      <Router />
-      {/* 현재 사용 중인 react query 를 확인 및 조작 할수 있는 develop tool 제공 기능 */}
-      <ReactQueryDevtools initialIsOpen={true} />
+      <ThemeProvider theme={isDark ? darkTheme : ligthTheme}>
+        <GlobalStyle />
+        <Router />
+        {/* 현재 사용 중인 react query 를 확인 및 조작 할수 있는 develop tool 제공 기능 */}
+        <ReactQueryDevtools initialIsOpen={true} />
+      </ThemeProvider>
     </>
   );
 }
+
+export default App;
 
 /* 리액트 마스터 3.6 과정 */
 // const Container = styled.div`
@@ -118,5 +127,3 @@ function App() {
 /*  typeScirpt 기초 학습 3.0 ~ 3.4 */
 // <Circle borderColor="black" bgColor="teal" />
 // <Circle bgColor="tomato" text="곽예지" />
-
-export default App;
