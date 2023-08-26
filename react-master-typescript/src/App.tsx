@@ -1,11 +1,6 @@
 // import Circle from "./Circle";
-import { ThemeProvider, createGlobalStyle } from "styled-components";
-import Router from "./Router";
-import { ReactQueryDevtools } from "react-query/devtools";
-import { darkTheme, ligthTheme } from "./theme";
-import { useState } from "react";
-import { useRecoilValue } from "recoil";
-import { isDarkAtom } from "./atoms";
+import { createGlobalStyle } from "styled-components";
+import ToDoList from "./TodoList";
 
 //createGlobalStyle 전역 스코프에 스타일을 적용 시켜줌
 const GlobalStyle = createGlobalStyle`
@@ -69,61 +64,12 @@ a{
 `;
 
 function App() {
-  const isDark = useRecoilValue(isDarkAtom);
-  /* Fragment : react 에서 제공하는  부모 없이 서로 붙어 있는 컴포넌트를 붙어 있게 해주는 역활을 한다 없다면 불필요한 div 가 생성 될수 있다.*/
   return (
     <>
-      <ThemeProvider theme={isDark ? darkTheme : ligthTheme}>
-        <GlobalStyle />
-        <Router />
-        {/* 현재 사용 중인 react query 를 확인 및 조작 할수 있는 develop tool 제공 기능 */}
-        <ReactQueryDevtools initialIsOpen={true} />
-      </ThemeProvider>
+      <GlobalStyle />
+      <ToDoList />
     </>
   );
 }
 
 export default App;
-
-/* 리액트 마스터 3.6 과정 */
-// const Container = styled.div`
-//   background-color: ${(props) => props.theme.bgColor};
-// `;
-// const Title = styled.h1`
-//   color: ${(props) => props.theme.textColor};
-// `;
-
-// <Container>
-//   <Title>Hello</Title>
-// </Container>
-
-// const [value, setValue] = useState("");
-
-// const onChange = (event: React.FormEvent<HTMLInputElement>) => {
-/*   react 에선 target 대신 curre ntTarget 을 사용한다.
-     console.log(event.currentTarget.value);*/
-//   const {
-//     currentTarget: { value },
-//   } = event;
-//   setValue(value);
-// };
-
-// const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-//   event.preventDefault();
-//   console.log("hello", value);
-// };
-
-/*  typeScirpt 기초 학습 3.0 ~ 3.5 학습 */
-// <form onSubmit={onSubmit}>
-//   <input
-//     value={value}
-//     onChange={onChange}
-//     type="text"
-//     placeholder="user name"
-//   />
-//   <button>Log in</button>
-// </form>
-
-/*  typeScirpt 기초 학습 3.0 ~ 3.4 */
-// <Circle borderColor="black" bgColor="teal" />
-// <Circle bgColor="tomato" text="곽예지" />
